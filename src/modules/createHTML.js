@@ -1,7 +1,7 @@
 import { tasksWrap } from './htmlElements.js';
 import { tasksList } from './tasksList.js';
 
-export function createHTML() {
+export const createHTML = () => {
   // console.log(tasksList[1]);
   for (let i = 0; i < tasksList.length; i += 1) {
     if (i === tasksList[i].index) {
@@ -35,4 +35,4 @@ export function createHTML() {
       tasksWrap.append(indexWrap);
     }
   }
-}
+};
