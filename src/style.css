@@ -1,3 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Patua+One&family=Roboto:wght@400;500;900&display=swap');
+
+.patua {
+  font-family: 'Patua One', cursive;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  background-color: plum;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: black;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+#mainWrap {
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  width: 50vw;
+  border: solid black 2px;
+  box-shadow: 5px 5px 40px black;
+}
+
+#title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5vw;
+  border-bottom: solid gray 1px;
+}
+
+#listName {
+  font-size: 1.5rem;
+  font-weight: 200;
+}
+
+#form {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5vh 1.5vw;
+  border-bottom: solid gray 1px;
+}
+
+#newTask {
+  border: none;
+  font-size: 1.2rem;
+}
+
+#submitBttn {
+  border: none;
+  background-color: white;
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+#clearBttn {
+  border: none;
+  background-color: rgba(218, 218, 218, 0.293);
+  margin-top: auto;
+  padding: 1.5vh 1.5vw;
+  font-size: 1.2rem;
+  border-top: solid gray 1px;
+  color: rgb(116, 116, 116);
+}
+
+#tasks {
+  display: flex;
+  flex-direction: column;
+}
+
+.indexWrap {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 2vh 1.3vw;
+  border-bottom: solid gray 1px;
+  gap: 5px;
+}
+
+.taskDesc {
+  font-size: 1rem;
+}
+
+.threeDots {
+  margin-left: auto;
 }
