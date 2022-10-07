@@ -1,1 +1,0 @@
-export const tasksWrap = document.getElementById('tasks');

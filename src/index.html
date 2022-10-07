@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-    <title>To-Do List</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  href="style.css">
+    <title>To-Do list</title>
 </head>
 <body>
   <section id="mainWrap">
-    <div id="title">
-      <h1 id="listName" class="patua">Today's To Do</h1>
-      <span class="material-symbols-outlined">
-        autorenew
-      </span>
-    </div>
-    <form id="form" method="post">
-      <input type="text" name="newTask" id="newTask" placeholder="Add to your list...">
-      <button type="submit" id="submitBttn">+</button>
+  <div id="title">
+    <h1 class="list-title">To Do List App</h1>
+  </div>
+  <div id="wrap">
+    <h2 class="to-do">Today's To Do</h2>
+    <form id="form" method="get">
+          <input type="text" id="input" placeholder="Add to your list...">
+          <button id="add-btn" type="submit">+</button>
     </form>
-    <div id="tasks">
-    </div>
-    <button type="submit" id="clearBttn">Clear all completed</button>
+    <ol id="list">
+        <!-- Rendered list from index.js -->          
+    </ol>
+    <button type="button" class="clear">Clear all completed</button>
+  </div>
   </section>
 </body>
 </html>
