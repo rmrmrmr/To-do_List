@@ -73,7 +73,6 @@ body {
   cursor: pointer;
   font-size: 2rem;
   min-width: 20px;
-  padding: 0 5px 10px 0;
   background-color: white;
   padding: 0 10px;
 }
@@ -93,7 +92,7 @@ body {
   width: 100%;
   display: flex;
   padding: 0.5rem;
-  margin: 1px 1px;
+  margin: 0;
   align-items: center;
   justify-content: flex-start;
   gap: 40px;
@@ -102,8 +101,6 @@ body {
   flex-basis: 80%;
   font-size: 1.2rem;
   border-bottom: solid black;
-  /* border-right: solid black; */
-  margin: 0;
 }
 
 .clear {
@@ -136,4 +133,3 @@ body {
 .description {
   border: none;
 }
-
