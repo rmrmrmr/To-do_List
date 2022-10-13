@@ -1,8 +1,8 @@
 import './style.css';
-import { Methods } from './modules/functions.js';
+import Methods from './modules/functions.js';
 import { listSection, addTaskBttn, clearBttn } from './modules/vars.js';
 
-let tasksArr = [];
+let tasksArr = new Methods();
 
 addTaskBttn.addEventListener('submit', (evt) => {
   evt.preventDefault();

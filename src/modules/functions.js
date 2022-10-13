@@ -1,6 +1,10 @@
 import { listSection, Task } from './vars.js';
 
-export class Methods {
+export default class Methods {
+  constructor() {
+    this.arr = [];
+  }
+
   static parseLS(tasksArr) {
     tasksArr = JSON.parse(localStorage.getItem('tasks'));
     return tasksArr;
