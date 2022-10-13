@@ -1,42 +1,28 @@
 import './style.css';
-import Methods from './modules/storageMethods.js';
+import {
+  createHTML, getTaskName, setIndex, addToLocalStorage, clearTasks, parseLS,
+} from './modules/functions.js';
+import { listSection, addTaskBttn, clearBttn } from './modules/vars.js';
 
-Methods.setIndex();
-Methods.render();
+let tasksArr = [];
 
-const form = document.querySelector('#form');
-const input = document.querySelector('#input');
-const list = document.querySelector('#list');
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const description = input.value;
-  Methods.add(description);
-  Methods.render();
-  form.reset();
+addTaskBttn.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+  listSection.innerHTML = '';
+
+  getTaskName(tasksArr);
+  setIndex(tasksArr);
+  createHTML(tasksArr);
+  addToLocalStorage(tasksArr);
 });
 
-list.addEventListener('click', (e) => {
-  if (e.target.classList.contains('vertical-menu')) {
-    e.target.classList.remove('show');
-    e.target.classList.add('hide');
-    e.target.nextElementSibling.classList.remove('hide');
-    e.target.nextElementSibling.classList.add('show');
-    e.target.previousElementSibling.removeAttribute('disabled');
-    e.target.previousElementSibling.focus();
-  }
+clearBttn.addEventListener('click', () => {
+  clearTasks(tasksArr);
+  tasksArr = clearTasks(tasksArr);
+});
 
-  if (e.target.textContent === 'Delete') {
-    e.target.parentElement.parentElement.remove();
-    Methods.remove(e.target.parentElement.parentElement.id - 1);
-  }
-
-  if (e.target.textContent === 'Save') {
-    e.target.parentElement.classList.add('hide');
-    e.target.parentElement.classList.remove('show');
-    e.target.parentElement.previousElementSibling.classList.add('show');
-    e.target.parentElement.previousElementSibling.classList.remove('hide');
-    e.target.parentElement.previousElementSibling.previousElementSibling.setAttribute('disabled', 'disabled');
-    Methods.edit(e.target.parentElement.previousElementSibling.previousElementSibling.value,
-      e.target.parentElement.parentElement.id - 1);
-  }
+window.addEventListener('DOMContentLoaded', () => {
+  parseLS(tasksArr);
+  tasksArr = parseLS(tasksArr);
+  createHTML(tasksArr);
 });
