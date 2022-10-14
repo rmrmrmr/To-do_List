@@ -2,10 +2,10 @@ import './style.css';
 import Methods from './modules/functions.js';
 import { listSection, addTaskBttn, clearBttn } from './modules/vars.js';
 
-let tasksArr = new Methods();
+const tasksArr = new Methods();
 
 window.addEventListener('DOMContentLoaded', () => {
-  let hola = JSON.parse(localStorage.getItem('tasks'));
+  const hola = JSON.parse(localStorage.getItem('tasks'));
   if (hola !== null) {
     for (let i = 0; i < hola.length; i += 1) {
       tasksArr.pushi(hola[i]);

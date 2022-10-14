@@ -11,7 +11,7 @@ export default class Methods {
   }
 
   pushi(array) {
-    const hola = this.tasksArr.push(array);
+    this.tasksArr.push(array);
     return this.tasksArr;
   }
 
@@ -163,7 +163,6 @@ export default class Methods {
       }
     }
     this.addToLocalStorage();
-
   }
 
   deleteTask(e) {
@@ -183,18 +182,15 @@ export default class Methods {
   }
 
   clearTasks() {
-    let { tasksArr } = this;
+    const { tasksArr } = this;
     listSection.innerHTML = '';
-    console.log('antes', tasksArr);
     for (let i = 0; i < tasksArr.length; i += 1) {
       if (tasksArr[i].completed === true) {
-        console.log('quitar', tasksArr[i].description)
         tasksArr.splice(i, 1);
         i -= 1;
       }
     }
     this.setIndex();
-    console.log(tasksArr);
     this.addToLocalStorage();
     this.createHTML();
   }
