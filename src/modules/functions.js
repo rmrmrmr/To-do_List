@@ -5,11 +5,6 @@ export default class Methods {
     this.tasksArr = [];
   }
 
-  static parseLS(tasksArr) {
-    tasksArr = JSON.parse(localStorage.getItem('tasks'));
-    return tasksArr;
-  }
-
   pushi(array) {
     this.tasksArr.push(array);
     return this.tasksArr;
@@ -84,7 +79,7 @@ export default class Methods {
       });
       doneBttn.addEventListener('click', () => {
         // eslint-disable-next-line no-use-before-define
-        Methods.editLocalSt(editBttn, doneBttn, taskLabel, taskWrap.id, tasksArr);
+        this.editLocalSt(editBttn, doneBttn, taskLabel, taskWrap.id);
       });
 
       moreBttn.addEventListener('click', () => {
@@ -152,7 +147,8 @@ export default class Methods {
     }
   }
 
-  static editLocalSt(edBttn, dnBttn, label, currentIndex, tasksArr) {
+  editLocalSt(edBttn, dnBttn, label, currentIndex) {
+    const { tasksArr } = this;
     edBttn.classList.replace('menuHide', 'menuVis');
     dnBttn.classList.replace('menuVis', 'menuHide');
     label.readOnly = true;
