@@ -1,6 +1,8 @@
 import './style.css';
 import Methods from './modules/functions.js';
-import { listSection, addTaskBttn, clearBttn, renewBttn } from './modules/vars.js';
+import {
+  listSection, addTaskBttn, clearBttn, renewBttn,
+} from './modules/vars.js';
 
 const tasksArr = new Methods();
 

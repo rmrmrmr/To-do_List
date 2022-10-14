@@ -5,12 +5,22 @@ body {
   width: 50vw;
   max-width: 700px;
   height: 70vh;
-  border: solid black;
+  border: solid white;
   margin: 15vh 25vw;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   user-select: none;
+  background-color: black;
+  color: white;
+}
+
+input, textarea {
+  background-color: black;
+}
+
+::placeholder {
+  color: white;
 }
 
 #titleSect {
@@ -18,14 +28,11 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: solid black 3px;
+  border-bottom: solid white 3px;
 }
 
-#renew {
-  /* color: black; */
-  /* display: flex; */
-  /* align-items: center; */
-  /* border: none; */
+#formSect {
+  border-bottom: solid white 3px;
 }
 
 #listTitle {
@@ -54,12 +61,14 @@ body {
   padding: 2vh 0;
   width: 90%;
   outline: none;
+  color: white;
 }
 
 #addTaskBttn {
   position: relative;
   border: none;
-  background-color: white;
+  background-color: black;
+  color: white;
   padding: 0;
   width: 10%;
   display: flex;
@@ -72,7 +81,7 @@ body {
   align-items: center;
   padding: 2vh;
   gap: 10px;
-  border-bottom: solid black 1px;
+  border-bottom: solid white 1px;
 }
 
 .moreBttn {
@@ -91,6 +100,7 @@ body {
   outline: none;
   border: none;
   font-family: 'JetBrains', monospace;
+  color: white;
 }
 
 .completed {
@@ -98,14 +108,14 @@ body {
 }
 
 .taskLabel::selection {
-  color: white;
-  background: black;
+  color: black;
+  background: white;
 }
 
 #clearBttnSect {
   position: relative;
   width: 100%;
-  border-top: solid black 3px;
+  border-top: solid white 3px;
   margin-top: auto;
 }
 

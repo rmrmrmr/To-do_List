@@ -11,7 +11,7 @@ export default class Methods {
   }
 
   deleteArr() {
-    while(this.tasksArr.length > 0) {
+    while (this.tasksArr.length > 0) {
       this.tasksArr.pop();
     }
     return this.tasksArr;
