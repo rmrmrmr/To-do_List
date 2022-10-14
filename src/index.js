@@ -1,6 +1,6 @@
 import './style.css';
 import Methods from './modules/functions.js';
-import { listSection, addTaskBttn, clearBttn } from './modules/vars.js';
+import { listSection, addTaskBttn, clearBttn, renewBttn } from './modules/vars.js';
 
 const tasksArr = new Methods();
 
@@ -26,4 +26,10 @@ addTaskBttn.addEventListener('submit', (evt) => {
 
 clearBttn.addEventListener('click', () => {
   tasksArr.clearTasks();
+});
+
+renewBttn.addEventListener('click', () => {
+  localStorage.clear();
+  listSection.innerHTML = '';
+  tasksArr.deleteArr();
 });

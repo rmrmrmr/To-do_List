@@ -21,6 +21,13 @@ body {
   border-bottom: solid black 3px;
 }
 
+#renew {
+  /* color: black; */
+  /* display: flex; */
+  /* align-items: center; */
+  /* border: none; */
+}
+
 #listTitle {
   font-size: 2rem;
   margin: 0;
@@ -127,4 +134,21 @@ body {
 .material-symbols-outlined {
   cursor: pointer;
   user-select: none;
+}
+
+@media all and (max-width: 768px) {
+  body {
+    width: 80vw;
+    margin: 15vh 10vw;
+    height: 70vh;
+  }
+
+  .taskWrap {
+    max-width: 80vw;
+    gap: 0;
+  }
+
+  .taskLabel {
+    max-width: 30vw;
+  }
 }

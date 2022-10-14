@@ -10,6 +10,13 @@ export default class Methods {
     return this.tasksArr;
   }
 
+  deleteArr() {
+    while(this.tasksArr.length > 0) {
+      this.tasksArr.pop();
+    }
+    return this.tasksArr;
+  }
+
   static editTask(label, edBttn, dnBttn) {
     edBttn.classList.replace('menuVis', 'menuHide');
     dnBttn.classList.replace('menuHide', 'menuVis');
