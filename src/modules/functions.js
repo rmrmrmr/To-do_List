@@ -2,12 +2,17 @@ import { listSection, Task } from './vars.js';
 
 export default class Methods {
   constructor() {
-    this.arr = [];
+    this.tasksArr = [];
   }
 
   static parseLS(tasksArr) {
     tasksArr = JSON.parse(localStorage.getItem('tasks'));
     return tasksArr;
+  }
+
+  pushi(array) {
+    const hola = this.tasksArr.push(array);
+    return this.tasksArr;
   }
 
   static editTask(label, edBttn, dnBttn) {
@@ -17,7 +22,8 @@ export default class Methods {
     label.select();
   }
 
-  static createHTML(tasksArr) {
+  createHTML() {
+    const { tasksArr } = this;
     for (let i = 0; i < tasksArr.length; i += 1) {
       const taskDesc = tasksArr[i].description;
       const taskStatus = tasksArr[i].completed;
@@ -92,49 +98,57 @@ export default class Methods {
 
       checkbox.addEventListener('click', (e) => {
         // eslint-disable-next-line no-use-before-define
-        Methods.taskStatusModifier(e, tasksArr);
+        this.taskStatusModifier(e);
       });
 
       deleteBttn.addEventListener('click', (e) => {
         // eslint-disable-next-line no-use-before-define
-        Methods.deleteTask(e, tasksArr);
+        this.deleteTask(e);
       });
 
       taskWrap.append(moreBttn);
     }
   }
 
-  static getTaskName(tasksArr) {
-    const taskInput = document.getElementById('taskInput');
+  getTaskName(taskInput) {
+    const { tasksArr } = this;
     const newTask = new Task(taskInput.value);
     tasksArr.push(newTask);
     taskInput.value = '';
   }
 
-  static addToLocalStorage(tasksArr) {
+  addToLocalStorage() {
+    const { tasksArr } = this;
     const arrLocalStorage = JSON.stringify(tasksArr);
     localStorage.setItem('tasks', arrLocalStorage);
   }
 
-  static setIndex(tasksArr) {
+  static addAsObject(tasksArr) {
+    const arrLocalStorage = JSON.stringify(tasksArr);
+    localStorage.setItem('objeto', arrLocalStorage);
+  }
+
+  setIndex() {
+    const { tasksArr } = this;
     for (let i = 0; i < tasksArr.length; i += 1) {
       tasksArr[i].index = i + 1;
     }
   }
 
-  static taskStatusModifier(e, tasksArr) {
+  taskStatusModifier(e) {
+    const { tasksArr } = this;
     const box = e.target.checked;
     const div = e.target.parentNode.childNodes[1];
     const id = e.target.parentNode.id - 1;
     if (box === true) {
       div.classList.add('completed');
       tasksArr[id].completed = true;
-      Methods.addToLocalStorage(tasksArr);
+      this.addToLocalStorage();
     }
     if (box === false) {
       div.classList.remove('completed');
       tasksArr[id].completed = false;
-      Methods.addToLocalStorage(tasksArr);
+      this.addToLocalStorage();
     }
   }
 
@@ -148,10 +162,12 @@ export default class Methods {
         tasksArr[i].description = label.value;
       }
     }
-    Methods.addToLocalStorage(tasksArr);
+    this.addToLocalStorage();
+
   }
 
-  static deleteTask(e, tasksArr) {
+  deleteTask(e) {
+    const { tasksArr } = this;
     listSection.innerHTML = '';
     const taskID = e.target.parentNode.parentNode.id - 1;
 
@@ -161,24 +177,25 @@ export default class Methods {
       }
     }
 
-    Methods.setIndex(tasksArr);
-    Methods.addToLocalStorage(tasksArr);
-    Methods.createHTML(tasksArr);
+    this.setIndex();
+    this.addToLocalStorage();
+    this.createHTML();
   }
 
-  static filterByStatus(item) {
-    if (item.completed === true) {
-      return false;
-    }
-    return true;
-  }
-
-  static clearTasks(tasksArr) {
+  clearTasks() {
+    let { tasksArr } = this;
     listSection.innerHTML = '';
-    tasksArr = tasksArr.filter(Methods.filterByStatus);
-    Methods.setIndex(tasksArr);
-    Methods.addToLocalStorage(tasksArr);
-    Methods.createHTML(tasksArr);
-    return tasksArr;
+    console.log('antes', tasksArr);
+    for (let i = 0; i < tasksArr.length; i += 1) {
+      if (tasksArr[i].completed === true) {
+        console.log('quitar', tasksArr[i].description)
+        tasksArr.splice(i, 1);
+        i -= 1;
+      }
+    }
+    this.setIndex();
+    console.log(tasksArr);
+    this.addToLocalStorage();
+    this.createHTML();
   }
 }

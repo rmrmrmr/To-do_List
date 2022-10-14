@@ -2,26 +2,28 @@ import './style.css';
 import Methods from './modules/functions.js';
 import { listSection, addTaskBttn, clearBttn } from './modules/vars.js';
 
-// let tasksArr = new Methods();
-
-addTaskBttn.addEventListener('submit', (evt, tasksArr) => {
-  evt.preventDefault();
-  listSection.innerHTML = '';
-
-  Methods.getTaskName(tasksArr);
-  Methods.setIndex(tasksArr);
-  Methods.createHTML(tasksArr);
-  Methods.addToLocalStorage(tasksArr);
-});
-
-clearBttn.addEventListener('click', (tasksArr) => {
-  Methods.clearTasks(tasksArr);
-  tasksArr = Methods.clearTasks(tasksArr);
-});
+let tasksArr = new Methods();
 
 window.addEventListener('DOMContentLoaded', () => {
-  let tasksArr = new Methods();
-  Methods.parseLS(tasksArr);
-  tasksArr = Methods.parseLS(tasksArr);
-  Methods.createHTML(tasksArr);
+  let hola = JSON.parse(localStorage.getItem('tasks'));
+  if (hola !== null) {
+    for (let i = 0; i < hola.length; i += 1) {
+      tasksArr.pushi(hola[i]);
+    }
+  }
+  tasksArr.createHTML();
+});
+
+addTaskBttn.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+  listSection.innerHTML = '';
+  const taskInput = document.getElementById('taskInput');
+  tasksArr.getTaskName(taskInput);
+  tasksArr.setIndex();
+  tasksArr.createHTML();
+  tasksArr.addToLocalStorage();
+});
+
+clearBttn.addEventListener('click', () => {
+  tasksArr.clearTasks();
 });
