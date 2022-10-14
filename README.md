@@ -1,15 +1,21 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Project Name
+# To-Do App
 
 > Here you can find an interactive To-Do List application to run on you browser. You can add new tasks to it as well as edit and delete each one of them. You can also mark them as completed and delete all of the tasks that are marked as such. 
 
 
 ## Built With
 
-- HTML
-- CSS
-- JS
+- HTML 👷
+- CSS 🎨🖌️
+- JS 🤖
+
+
+## Live Demo
+
+[Live Demo Link](https://rmrmrmr.github.io/To-do_List/dist/)
+
 
 ## Getting Started
 
@@ -21,8 +27,8 @@ To get a local copy up and running follow these simple example steps.
 
 ### Setup
 - Clone this repository into you local environment
-- Install webpack
-- Run npm start
+- Install webpack (`npm i`)
+- Run `npm start`
 
 ## Authors
 
