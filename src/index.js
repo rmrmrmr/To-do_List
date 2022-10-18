@@ -7,19 +7,15 @@ import {
 const tasksArr = new Methods();
 
 window.addEventListener('DOMContentLoaded', () => {
-  const hola = JSON.parse(localStorage.getItem('tasks'));
-  if (hola !== null) {
-    for (let i = 0; i < hola.length; i += 1) {
-      tasksArr.pushi(hola[i]);
-    }
-  }
+  tasksArr.parseLocalSt();
   tasksArr.createHTML();
 });
 
 addTaskBttn.addEventListener('submit', (evt) => {
+  const taskInput = document.getElementById('taskInput');
+
   evt.preventDefault();
   listSection.innerHTML = '';
-  const taskInput = document.getElementById('taskInput');
   tasksArr.getTaskName(taskInput);
   tasksArr.setIndex();
   tasksArr.createHTML();
@@ -31,7 +27,7 @@ clearBttn.addEventListener('click', () => {
 });
 
 renewBttn.addEventListener('click', () => {
-  localStorage.clear();
   listSection.innerHTML = '';
+  localStorage.clear();
   tasksArr.deleteArr();
 });

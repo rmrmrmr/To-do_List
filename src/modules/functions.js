@@ -5,23 +5,18 @@ export default class Methods {
     this.tasksArr = [];
   }
 
-  pushi(array) {
-    this.tasksArr.push(array);
-    return this.tasksArr;
+  getTaskName(taskInput) {
+    const { tasksArr } = this;
+    const newTask = new Task(taskInput.value);
+    tasksArr.push(newTask);
+    taskInput.value = '';
   }
 
-  deleteArr() {
-    while (this.tasksArr.length > 0) {
-      this.tasksArr.pop();
+  setIndex() {
+    const { tasksArr } = this;
+    for (let i = 0; i < tasksArr.length; i += 1) {
+      tasksArr[i].index = i + 1;
     }
-    return this.tasksArr;
-  }
-
-  static editTask(label, edBttn, dnBttn) {
-    edBttn.classList.replace('menuVis', 'menuHide');
-    dnBttn.classList.replace('menuHide', 'menuVis');
-    label.readOnly = false;
-    label.select();
   }
 
   createHTML() {
@@ -85,7 +80,6 @@ export default class Methods {
         Methods.editTask(taskLabel, editBttn, doneBttn);
       });
       doneBttn.addEventListener('click', () => {
-        // eslint-disable-next-line no-use-before-define
         this.editLocalSt(editBttn, doneBttn, taskLabel, taskWrap.id);
       });
 
@@ -99,24 +93,15 @@ export default class Methods {
       });
 
       checkbox.addEventListener('click', (e) => {
-        // eslint-disable-next-line no-use-before-define
         this.taskStatusModifier(e);
       });
 
       deleteBttn.addEventListener('click', (e) => {
-        // eslint-disable-next-line no-use-before-define
         this.deleteTask(e);
       });
 
       taskWrap.append(moreBttn);
     }
-  }
-
-  getTaskName(taskInput) {
-    const { tasksArr } = this;
-    const newTask = new Task(taskInput.value);
-    tasksArr.push(newTask);
-    taskInput.value = '';
   }
 
   addToLocalStorage() {
@@ -125,16 +110,41 @@ export default class Methods {
     localStorage.setItem('tasks', arrLocalStorage);
   }
 
-  static addAsObject(tasksArr) {
-    const arrLocalStorage = JSON.stringify(tasksArr);
-    localStorage.setItem('objeto', arrLocalStorage);
+  deleteTask(e) {
+    const { tasksArr } = this;
+    listSection.innerHTML = '';
+    const taskID = e.target.parentNode.parentNode.id - 1;
+
+    for (let i = 0; i < tasksArr.length; i += 1) {
+      if (taskID === i) {
+        tasksArr.splice(i, 1);
+      }
+    }
+
+    this.setIndex();
+    this.addToLocalStorage();
+    this.createHTML();
   }
 
-  setIndex() {
+  static editTask(label, edBttn, dnBttn) {
+    edBttn.classList.replace('menuVis', 'menuHide');
+    dnBttn.classList.replace('menuHide', 'menuVis');
+    label.readOnly = false;
+    label.select();
+  }
+
+  editLocalSt(edBttn, dnBttn, label, currentIndex) {
     const { tasksArr } = this;
+    edBttn.classList.replace('menuHide', 'menuVis');
+    dnBttn.classList.replace('menuVis', 'menuHide');
+    label.readOnly = true;
+
     for (let i = 0; i < tasksArr.length; i += 1) {
-      tasksArr[i].index = i + 1;
+      if ((currentIndex - 1) === i) {
+        tasksArr[i].description = label.value;
+      }
     }
+    this.addToLocalStorage();
   }
 
   taskStatusModifier(e) {
@@ -154,36 +164,6 @@ export default class Methods {
     }
   }
 
-  editLocalSt(edBttn, dnBttn, label, currentIndex) {
-    const { tasksArr } = this;
-    edBttn.classList.replace('menuHide', 'menuVis');
-    dnBttn.classList.replace('menuVis', 'menuHide');
-    label.readOnly = true;
-
-    for (let i = 0; i < tasksArr.length; i += 1) {
-      if ((currentIndex - 1) === i) {
-        tasksArr[i].description = label.value;
-      }
-    }
-    this.addToLocalStorage();
-  }
-
-  deleteTask(e) {
-    const { tasksArr } = this;
-    listSection.innerHTML = '';
-    const taskID = e.target.parentNode.parentNode.id - 1;
-
-    for (let i = 0; i < tasksArr.length; i += 1) {
-      if (taskID === i) {
-        tasksArr.splice(i, 1);
-      }
-    }
-
-    this.setIndex();
-    this.addToLocalStorage();
-    this.createHTML();
-  }
-
   clearTasks() {
     const { tasksArr } = this;
     listSection.innerHTML = '';
@@ -196,5 +176,21 @@ export default class Methods {
     this.setIndex();
     this.addToLocalStorage();
     this.createHTML();
+  }
+
+  parseLocalSt() {
+    const els = JSON.parse(localStorage.getItem('tasks'));
+    if (els !== null) {
+      for (let i = 0; i < els.length; i += 1) {
+        this.tasksArr.push(els[i]);
+      }
+    }
+  }
+
+  deleteArr() {
+    while (this.tasksArr.length > 0) {
+      this.tasksArr.pop();
+    }
+    return this.tasksArr;
   }
 }
