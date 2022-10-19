@@ -20,7 +20,6 @@ addTaskBttn.addEventListener('submit', (evt) => {
   listSection.innerHTML = '';
   tasksArr.getTaskName(taskInput);
   taskInput.value = '';
-  console.log(tasksArr.tasksArr[0].description);
   tasksArr.setIndex();
   tasksArr.createHTML();
   tasksArr.addToLocalStorage();
