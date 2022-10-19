@@ -1,11 +1,21 @@
-// import './style.css';
-// import Methods from './modules/functions';
-// import {
-// listSection, addTaskBttn, clearBttn, renewBttn
-//  } from './modules/vars';
+/** * @jest-environment jsdom */
+import Methods from './modules/functions.js';
 
-it('works', () => {
-  expect(1).toBe(1);
+document.body.innerHTML = '<section id="listSection></section>';
+
+describe('addTask', () => {
+  test('createArr', () => {
+    const tasksArr = new Methods();
+    expect(tasksArr).toBeDefined();
+  });
+  test('setName', () => {
+    const tasksArr = new Methods();
+    const taskName = document.createElement('input');
+    taskName.setAttribute('type', 'text');
+    taskName.setAttribute('value', 'task1');
+    tasksArr.getTaskName(taskName);
+    expect(tasksArr.tasksArr[0].description).toBe(taskName.value);
+  });
 });
 
 // ADD TASKS
@@ -17,5 +27,4 @@ it('works', () => {
 // deleteTask
 
 // Mock
-// local
 // HTML

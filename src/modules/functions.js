@@ -1,3 +1,5 @@
+/** * @jest-environment jsdom */
+
 import { listSection, Task } from './vars.js';
 
 export default class Methods {
@@ -9,7 +11,6 @@ export default class Methods {
     const { tasksArr } = this;
     const newTask = new Task(taskInput.value);
     tasksArr.push(newTask);
-    taskInput.value = '';
   }
 
   setIndex() {

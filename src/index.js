@@ -1,3 +1,5 @@
+/** * @jest-environment jsdom */
+
 import './style.css';
 import Methods from './modules/functions.js';
 import {
@@ -17,6 +19,8 @@ addTaskBttn.addEventListener('submit', (evt) => {
   evt.preventDefault();
   listSection.innerHTML = '';
   tasksArr.getTaskName(taskInput);
+  taskInput.value = '';
+  console.log(tasksArr.tasksArr[0].description);
   tasksArr.setIndex();
   tasksArr.createHTML();
   tasksArr.addToLocalStorage();

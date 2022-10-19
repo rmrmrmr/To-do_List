@@ -5,22 +5,22 @@ body {
   width: 50vw;
   max-width: 700px;
   height: 70vh;
-  border: solid white;
+  border: solid black;
   margin: 15vh 25vw;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   user-select: none;
-  background-color: black;
-  color: white;
+  background-color: white;
+  color: black;
 }
 
 input, textarea {
-  background-color: black;
+  background-color: white;
 }
 
 ::placeholder {
-  color: white;
+  color: black;
 }
 
 #titleSect {
@@ -28,11 +28,11 @@ input, textarea {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: solid white 3px;
+  border-bottom: solid black 3px;
 }
 
 #formSect {
-  border-bottom: solid white 3px;
+  border-bottom: solid black 3px;
 }
 
 #listTitle {
@@ -40,6 +40,11 @@ input, textarea {
   margin: 0;
 }
 
+
+ul {
+  list-style: none;
+  padding: 0;
+}
 #formSect {
   display: flex;
   width: 100%;
@@ -50,7 +55,7 @@ input, textarea {
   display: flex;
   padding: 0 2vw;
   justify-content: space-between;
-  border-bottom: solid black 3px;
+  border-bottom: solid white 3px;
   height: 7vh;
 }
 
@@ -61,14 +66,14 @@ input, textarea {
   padding: 2vh 0;
   width: 90%;
   outline: none;
-  color: white;
+  color: black;
 }
 
 #addTaskBttn {
   position: relative;
   border: none;
-  background-color: black;
-  color: white;
+  background-color: white;
+  color: black;
   padding: 0;
   width: 10%;
   display: flex;
@@ -81,7 +86,7 @@ input, textarea {
   align-items: center;
   padding: 2vh;
   gap: 10px;
-  border-bottom: solid white 1px;
+  border-bottom: solid black 1px;
 }
 
 .moreBttn {
@@ -100,7 +105,7 @@ input, textarea {
   outline: none;
   border: none;
   font-family: 'JetBrains', monospace;
-  color: white;
+  color: black;
 }
 
 .completed {
@@ -108,14 +113,14 @@ input, textarea {
 }
 
 .taskLabel::selection {
-  color: black;
-  background: white;
+  color: white;
+  background: black;
 }
 
 #clearBttnSect {
   position: relative;
   width: 100%;
-  border-top: solid white 3px;
+  border-top: solid black 3px;
   margin-top: auto;
 }
 
