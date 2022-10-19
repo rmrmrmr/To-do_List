@@ -1,7 +1,7 @@
 /** * @jest-environment jsdom */
 import Methods from './modules/functions.js';
 
-document.body.innerHTML = '<section id="listSection></section>';
+document.body.innerHTML = '<section id="listSection"></section>';
 const tasksArr = new Methods();
 
 describe('addTask', () => {
@@ -19,10 +19,13 @@ describe('addTask', () => {
     tasksArr.setIndex();
     expect(tasksArr.tasksArr[0].index).toBe(1);
   });
+  test('addToLocalStorage', () => {
+    tasksArr.addToLocalStorage();
+    expect(localStorage.getItem('tasks') !== null).toBe(true);
+  });
 });
 
 // ADD TASKS
-// setIndex
 // createHTML
 // addToLocalStorage
 
