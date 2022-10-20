@@ -71,4 +71,12 @@ describe('editTask', () => {
   });
 });
 
-// comment
+describe('add task', () => {
+  test('change status of the todo', () => {
+    const div = document.querySelector('.taskLabel');
+    const { id } = document.querySelector('.taskWrap').id;
+    const box = document.querySelector('.checkbox').checked;
+    tasksArr.taskStatusModifier(box, div, id);
+    expect(tasksArr.tasksArr[0].completed).toBe(true);
+  });
+});
