@@ -1,3 +1,5 @@
+/** * @jest-environment jsdom */
+
 import { listSection, Task } from './vars.js';
 
 export default class Methods {
@@ -9,7 +11,6 @@ export default class Methods {
     const { tasksArr } = this;
     const newTask = new Task(taskInput.value);
     tasksArr.push(newTask);
-    taskInput.value = '';
   }
 
   setIndex() {
@@ -19,7 +20,7 @@ export default class Methods {
     }
   }
 
-  createHTML() {
+  createHTML(listSection) {
     const { tasksArr } = this;
     for (let i = 0; i < tasksArr.length; i += 1) {
       const taskDesc = tasksArr[i].description;
@@ -30,7 +31,7 @@ export default class Methods {
       taskWrap.setAttribute('id', taskStatus);
       taskWrap.classList.add('taskWrap');
       taskWrap.setAttribute('id', taskIndex);
-      listSection.appendChild(taskWrap);
+      listSection.append(taskWrap);
 
       const checkbox = document.createElement('input');
       checkbox.setAttribute('type', 'checkbox');
@@ -53,11 +54,13 @@ export default class Methods {
       const editBttn = document.createElement('span');
       editBttn.classList.add('material-symbols-outlined');
       editBttn.classList.add('menuVis');
+      editBttn.setAttribute('id', 'editBttn');
       editBttn.innerHTML = 'edit';
       moreMenu.append(editBttn);
       const doneBttn = document.createElement('span');
       doneBttn.classList.add('material-symbols-outlined');
       doneBttn.classList.add('menuHide');
+      doneBttn.setAttribute('id', 'doneBttn');
       doneBttn.innerHTML = 'done';
       moreMenu.append(doneBttn);
       const deleteBttn = document.createElement('span');
@@ -93,7 +96,10 @@ export default class Methods {
       });
 
       checkbox.addEventListener('click', (e) => {
-        this.taskStatusModifier(e);
+        const box = e.target.checked;
+        const div = e.target.parentNode.childNodes[1];
+        const id = e.target.parentNode.id - 1;
+        this.taskStatusModifier(box, div, id);
       });
 
       deleteBttn.addEventListener('click', (e) => {
@@ -123,7 +129,7 @@ export default class Methods {
 
     this.setIndex();
     this.addToLocalStorage();
-    this.createHTML();
+    this.createHTML(listSection);
   }
 
   static editTask(label, edBttn, dnBttn) {
@@ -147,11 +153,8 @@ export default class Methods {
     this.addToLocalStorage();
   }
 
-  taskStatusModifier(e) {
+  taskStatusModifier(box, div, id) {
     const { tasksArr } = this;
-    const box = e.target.checked;
-    const div = e.target.parentNode.childNodes[1];
-    const id = e.target.parentNode.id - 1;
     if (box === true) {
       div.classList.add('completed');
       tasksArr[id].completed = true;
@@ -175,7 +178,7 @@ export default class Methods {
     }
     this.setIndex();
     this.addToLocalStorage();
-    this.createHTML();
+    this.createHTML(listSection);
   }
 
   parseLocalSt() {

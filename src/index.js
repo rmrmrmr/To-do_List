@@ -1,3 +1,5 @@
+/** * @jest-environment jsdom */
+
 import './style.css';
 import Methods from './modules/functions.js';
 import {
@@ -8,7 +10,7 @@ const tasksArr = new Methods();
 
 window.addEventListener('DOMContentLoaded', () => {
   tasksArr.parseLocalSt();
-  tasksArr.createHTML();
+  tasksArr.createHTML(listSection);
 });
 
 addTaskBttn.addEventListener('submit', (evt) => {
@@ -17,8 +19,9 @@ addTaskBttn.addEventListener('submit', (evt) => {
   evt.preventDefault();
   listSection.innerHTML = '';
   tasksArr.getTaskName(taskInput);
+  taskInput.value = '';
   tasksArr.setIndex();
-  tasksArr.createHTML();
+  tasksArr.createHTML(listSection);
   tasksArr.addToLocalStorage();
 });
 
