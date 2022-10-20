@@ -20,7 +20,7 @@ export default class Methods {
     }
   }
 
-  createHTML() {
+  createHTML(listSection) {
     const { tasksArr } = this;
     for (let i = 0; i < tasksArr.length; i += 1) {
       const taskDesc = tasksArr[i].description;
@@ -31,7 +31,7 @@ export default class Methods {
       taskWrap.setAttribute('id', taskStatus);
       taskWrap.classList.add('taskWrap');
       taskWrap.setAttribute('id', taskIndex);
-      listSection.appendChild(taskWrap);
+      listSection.append(taskWrap);
 
       const checkbox = document.createElement('input');
       checkbox.setAttribute('type', 'checkbox');
@@ -124,7 +124,7 @@ export default class Methods {
 
     this.setIndex();
     this.addToLocalStorage();
-    this.createHTML();
+    this.createHTML(listSection);
   }
 
   static editTask(label, edBttn, dnBttn) {
@@ -176,7 +176,7 @@ export default class Methods {
     }
     this.setIndex();
     this.addToLocalStorage();
-    this.createHTML();
+    this.createHTML(listSection);
   }
 
   parseLocalSt() {

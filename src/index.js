@@ -10,7 +10,7 @@ const tasksArr = new Methods();
 
 window.addEventListener('DOMContentLoaded', () => {
   tasksArr.parseLocalSt();
-  tasksArr.createHTML();
+  tasksArr.createHTML(listSection);
 });
 
 addTaskBttn.addEventListener('submit', (evt) => {
@@ -21,7 +21,7 @@ addTaskBttn.addEventListener('submit', (evt) => {
   tasksArr.getTaskName(taskInput);
   taskInput.value = '';
   tasksArr.setIndex();
-  tasksArr.createHTML();
+  tasksArr.createHTML(listSection);
   tasksArr.addToLocalStorage();
 });
 
