@@ -54,11 +54,13 @@ export default class Methods {
       const editBttn = document.createElement('span');
       editBttn.classList.add('material-symbols-outlined');
       editBttn.classList.add('menuVis');
+      editBttn.setAttribute('id', 'editBttn');
       editBttn.innerHTML = 'edit';
       moreMenu.append(editBttn);
       const doneBttn = document.createElement('span');
       doneBttn.classList.add('material-symbols-outlined');
       doneBttn.classList.add('menuHide');
+      doneBttn.setAttribute('id', 'doneBttn');
       doneBttn.innerHTML = 'done';
       moreMenu.append(doneBttn);
       const deleteBttn = document.createElement('span');

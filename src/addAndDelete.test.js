@@ -2,6 +2,8 @@
 import Methods from './modules/functions.js';
 
 const tasksArr = new Methods();
+document.body.innerHTML = '<div id="listSect">'
++ '</div>';
 
 describe('addTask', () => {
   test('createArr', () => {
@@ -23,11 +25,10 @@ describe('addTask', () => {
     expect(localStorage.getItem('tasks') !== null).toBe(true);
   });
   test('createHTMl', () => {
-    const listSection = document.createElement('div');
-    listSection.setAttribute('id', 'listSect');
+    const listSection = document.querySelector('#listSect');
     tasksArr.createHTML(listSection);
-    const innerTxt = '<div id="1" class="taskWrap"><input type="checkbox" name="checkbox1" class="checkbox"><input type="text" value="task1" readonly="" class="taskLabel" id="text1"><div class="menuHide moreMenu"><span class="material-symbols-outlined menuVis">edit</span><span class="material-symbols-outlined menuHide">done</span><span class="material-symbols-outlined">delete</span><span class="material-symbols-outlined">close</span></div><span class="material-symbols-outlined moreBttn menuVis">chevron_left</span></div>';
-    expect(listSection.innerHTML).toBe(innerTxt);
+    const tasksNodeList = document.querySelectorAll('.taskWrap');
+    expect(tasksNodeList).toHaveLength(1);
   });
 });
 
@@ -40,5 +41,32 @@ describe('add a Task', () => {
     tasksArr.getTaskName(taskName);
     tasksArr.deleteArr(0);
     expect(tasksArr.tasksArr.length).toBe(0);
+  });
+});
+
+describe('editTask', () => {
+  test('showMenu', () => {
+    const moreBttn = document.querySelector('.moreBttn');
+    const moreMenu = document.querySelector('.moreMenu');
+    moreMenu.classList.replace('menuHide', 'menuVis');
+    moreBttn.classList.replace('menuVis', 'menuHide');
+    const hideBttn = moreBttn.classList.contains('menuHide');
+    const show = moreMenu.classList.contains('menuVis');
+    expect(hideBttn).toBe(true);
+    expect(show).toBe(true);
+  });
+  test('openEdit', () => {
+    const editBttn = document.querySelector('#editBttn');
+    const doneBttn = document.querySelector('#doneBttn');
+    const taskLabel = document.querySelector('.taskLabel');
+    const readStatusTrue = taskLabel.hasAttribute('readonly');
+    expect(readStatusTrue).toBe(true);
+    Methods.editTask(taskLabel, editBttn, doneBttn);
+    const checkEditVis = editBttn.classList.contains('menuHide');
+    const doneBttnVis = doneBttn.classList.contains('menuVis');
+    expect(checkEditVis).toBe(true);
+    expect(doneBttnVis).toBe(true);
+    const readStatusFalse = taskLabel.hasAttribute('readonly');
+    expect(readStatusFalse).toBe(false);
   });
 });
