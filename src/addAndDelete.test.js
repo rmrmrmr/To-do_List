@@ -5,7 +5,7 @@ const tasksArr = new Methods();
 document.body.innerHTML = '<div id="listSect">'
 + '</div>';
 
-describe('addTask', () => {
+describe('add', () => {
   test('createArr', () => {
     expect(tasksArr).toBeDefined();
   });
@@ -32,8 +32,8 @@ describe('addTask', () => {
   });
 });
 
-describe('add a Task', () => {
-  test('delete a todo', () => {
+describe('delete', () => {
+  test('deleteTask', () => {
     const tasksArr = new Methods();
     const taskName = document.createElement('input');
     taskName.setAttribute('type', 'text');
@@ -44,7 +44,7 @@ describe('add a Task', () => {
   });
 });
 
-describe('editTask', () => {
+describe('edit', () => {
   test('showMenu', () => {
     const moreBttn = document.querySelector('.moreBttn');
     const moreMenu = document.querySelector('.moreMenu');
@@ -71,12 +71,21 @@ describe('editTask', () => {
   });
 });
 
-describe('add task', () => {
-  test('change status of the todo', () => {
+describe('clear', () => {
+  test('changeStatus', () => {
     const div = document.querySelector('.taskLabel');
-    const { id } = document.querySelector('.taskWrap').id;
+    const { id } = document.querySelector('.taskWrap');
     const box = document.querySelector('.checkbox').checked;
-    tasksArr.taskStatusModifier(box, div, id);
-    expect(tasksArr.tasksArr[0].completed).toBe(true);
+    tasksArr.taskStatusModifier(div, id, box);
+    expect(tasksArr.tasksArr[0].completed).toBe(false);
+  });
+  test('clearTasks', () => {
+    const taskName = document.createElement('input');
+    taskName.setAttribute('type', 'text');
+    taskName.setAttribute('value', 'task1');
+    taskName.setAttribute('completed', 'true');
+    tasksArr.getTaskName(taskName);
+    const compleatedTodos = tasksArr.tasksArr.filter((task) => task.completed === true).length;
+    expect(compleatedTodos).toBe(0);
   });
 });

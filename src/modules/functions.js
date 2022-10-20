@@ -98,7 +98,6 @@ export default class Methods {
       checkbox.addEventListener('click', (e) => {
         const box = e.target.checked;
         const div = e.target.parentNode.childNodes[1];
-        console.log(div);
         const id = e.target.parentNode.id - 1;
         this.taskStatusModifier(box, div, id);
       });
