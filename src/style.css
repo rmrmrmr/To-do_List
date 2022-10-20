@@ -15,7 +15,8 @@ body {
   color: black;
 }
 
-input, textarea {
+input,
+textarea {
   background-color: white;
 }
 
@@ -33,6 +34,8 @@ input, textarea {
 
 #formSect {
   border-bottom: solid black 3px;
+  display: flex;
+  width: 100%;
 }
 
 #listTitle {
@@ -40,14 +43,9 @@ input, textarea {
   margin: 0;
 }
 
-
 ul {
   list-style: none;
   padding: 0;
-}
-#formSect {
-  display: flex;
-  width: 100%;
 }
 
 #inputForm {
