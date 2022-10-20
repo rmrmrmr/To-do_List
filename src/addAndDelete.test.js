@@ -3,7 +3,6 @@ import Methods from './modules/functions.js';
 
 const tasksArr = new Methods();
 
-
 describe('addTask', () => {
   test('createArr', () => {
     expect(tasksArr).toBeDefined();
@@ -31,5 +30,3 @@ describe('addTask', () => {
     expect(listSection.innerHTML).toBe(innerTxt);
   });
 });
-
-// deleteTask
