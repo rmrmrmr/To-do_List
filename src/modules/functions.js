@@ -96,7 +96,11 @@ export default class Methods {
       });
 
       checkbox.addEventListener('click', (e) => {
-        this.taskStatusModifier(e);
+        const box = e.target.checked;
+        const div = e.target.parentNode.childNodes[1];
+        console.log(div);
+        const id = e.target.parentNode.id - 1;
+        this.taskStatusModifier(box, div, id);
       });
 
       deleteBttn.addEventListener('click', (e) => {
@@ -150,11 +154,8 @@ export default class Methods {
     this.addToLocalStorage();
   }
 
-  taskStatusModifier(e) {
+  taskStatusModifier(box, div, id) {
     const { tasksArr } = this;
-    const box = e.target.checked;
-    const div = e.target.parentNode.childNodes[1];
-    const id = e.target.parentNode.id - 1;
     if (box === true) {
       div.classList.add('completed');
       tasksArr[id].completed = true;
