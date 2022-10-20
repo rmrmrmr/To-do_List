@@ -30,3 +30,15 @@ describe('addTask', () => {
     expect(listSection.innerHTML).toBe(innerTxt);
   });
 });
+
+describe('add a Task', () => {
+  test('delete a todo', () => {
+    const tasksArr = new Methods();
+    const taskName = document.createElement('input');
+    taskName.setAttribute('type', 'text');
+    taskName.setAttribute('value', 'task1');
+    tasksArr.getTaskName(taskName);
+    tasksArr.deleteArr(0);
+    expect(tasksArr.tasksArr.length).toBe(0);
+  });
+});
